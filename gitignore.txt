@@ -1,0 +1,21 @@
+# Allow model files to be uploaded to GitHub so Render can load them directly
+!mnist_baseline_model.keras
+!mnist_baseline.weights.h5
+
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.ipynb_checkpoints/
+
+.venv/
+venv/
+ENV/
+env/
+.env
+
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
