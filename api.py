@@ -18,7 +18,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 import keras
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 MODEL_PATH = 'mnist_baseline_model.keras'
 
@@ -26,6 +26,9 @@ if os.path.exists(MODEL_PATH):
     print("Loading pre-trained Keras 3 model...")
     model = keras.models.load_model(MODEL_PATH)
     print("Keras 3 model loaded successfully from disk!")
+    dummy = __import__('numpy').zeros((1, 784), dtype='float32')
+    model.predict(dummy, verbose=0)
+    print("Model warmed up and ready!")
 else:
     print("CRITICAL: Real model file not found! Using untrained architecture.")
     model = keras.models.Sequential([
